@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
-import palette from "../../../styles/palette";
+import palette from '../../styles/palette';
 
 interface buttonprops {
   size: string;
@@ -38,25 +38,25 @@ const StyledButton = styled.div<buttonprops>`
   background-color: ${(props) =>
     props.disabled
       ? palette.grey_200
-      : props.category === "main"
+      : props.category === 'primary'
       ? palette.cakeLemon_400
       : palette.cakeLavender_500};
   border: ${(props) =>
-    props.disabled ? "none" : `2px solid ${palette.grey_800}`};
+    props.disabled ? 'none' : `2px solid ${palette.grey_800}`};
   color: ${(props) =>
     props.disabled
-      ? props.category === "main"
+      ? props.category === 'primary'
         ? palette.grey_500
         : palette.grey_400
       : palette.black};
   font-weight: 500;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 
   &:hover {
     background-color: ${(props) =>
       props.disabled
         ? palette.grey_200
-        : props.category === "main"
+        : props.category === 'primary'
         ? palette.cakeLemon_500
         : palette.cakeLavender_600};
   }
