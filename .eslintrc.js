@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["plugin:react/recommended", "airbnb", "prettier"],
+  extends: ["next", "airbnb"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
@@ -25,5 +25,12 @@ module.exports = {
     "react/jsx-one-expression-per-line": "off",
     "implicit-arrow-linebreak": "off",
     "react/jsx-props-no-spreading": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "no-confusing-arrow": "off",
+    indent: "off",
+    "no-nested-ternary": "off",
+    "object-curly-spacing": "off",
+    "arrow-parens": "off",
   },
 };
