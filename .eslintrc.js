@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["plugin:react/recommended", "airbnb", "prettier"],
+  extends: ["next", "airbnb"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
@@ -30,5 +30,7 @@ module.exports = {
     "no-confusing-arrow": "off",
     indent: "off",
     "no-nested-ternary": "off",
+    "object-curly-spacing": "off",
+    "arrow-parens": "off",
   },
 };
