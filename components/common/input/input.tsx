@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import palette from '../../../styles/palette';
+import palette from "../../../styles/palette";
 
 const StyledInput = styled.input`
   width: 343px;
@@ -36,13 +36,14 @@ const StyledInput = styled.input`
   }
 `;
 
-function Input({placeholder, onChange}: {placeholder: string, onChange: any}) {
+function Input({
+  placeholder,
+  onChange,
+}: {
+  placeholder: string;
+  onChange: any;
+}) {
   return <StyledInput placeholder={placeholder} onChange={onChange} />;
 }
-
-Input.defaultProps = {
-  placeholder: '',
-  onChange: () => {},
-};
 
 export default Input;
