@@ -32,5 +32,7 @@ module.exports = {
     "no-nested-ternary": "off",
     "object-curly-spacing": "off",
     "arrow-parens": "off",
+    "operator-linebreak": "off",
+    "react/no-array-index-key": "off",
   },
 };
