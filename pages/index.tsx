@@ -13,29 +13,38 @@ const StyledHome = styled.div`
   /* background-color: ${palette.black}; */
 `;
 
+const StyledButton = styled.button`
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+
+  & + & {
+    margin-left: 0.3rem;
+  }
+  &:focus {
+    background-color: ${palette.blue_300};
+  }
+`;
+
 const Home: NextPage = () => {
-  const [data, setData] = useState<Array<string> | null>(null);
-  const appKey1 = process.env.NEXT_PUBLIC_LINE2_API_KEY1;
-  const appKey2 = process.env.NEXT_PUBLIC_LINE2_API_KEY2;
+  const [data, setData] = useState<Array<string>>([]);
 
-  const url =
-    "https://api.odcloud.kr/api/15041301/v1/uddi:3ecd8bc2-34ea-4860-a788-bf2578754ad9";
+  const url = [
+    process.env.NEXT_PUBLIC_LINE1_API,
+    process.env.NEXT_PUBLIC_LINE2_API,
+    process.env.NEXT_PUBLIC_LINE3_API,
+    process.env.NEXT_PUBLIC_LINE4_API,
+    process.env.NEXT_PUBLIC_LINE5_API,
+    process.env.NEXT_PUBLIC_LINE6_API,
+    process.env.NEXT_PUBLIC_LINE7_API,
+    process.env.NEXT_PUBLIC_LINE8_API,
+    process.env.NEXT_PUBLIC_LINE9_API,
+  ];
 
-  const onClick = async () => {
+  const onClick = async (num: number) => {
     try {
-      const response = await axios(url, {
-        method: "GET",
-        headers: {
-          Authorization: appKey1 || "",
-        },
-        params: {
-          serviceKey: appKey2,
-          perPage: 47,
-        },
-      });
-
+      const response = await axios.get(url[num] || "");
       setData(response.data.data);
-      console.log(response.data.data);
     } catch (e) {
       console.log(e);
     }
@@ -44,9 +53,15 @@ const Home: NextPage = () => {
   return (
     <StyledHome>
       <div>
-        <button type="button" onClick={onClick}>
-          불러오기
-        </button>
+        {Array.from(Array(9), (_, index) => (
+          <StyledButton
+            key={index}
+            type="button"
+            onClick={() => onClick(index)}
+          >
+            {index + 1}호선
+          </StyledButton>
+        ))}
       </div>
       {data &&
         data.map((d, index) => (
