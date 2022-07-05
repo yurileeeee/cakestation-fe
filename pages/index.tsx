@@ -5,6 +5,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import palette from "../styles/palette";
 
+import Map from "../components/Map";
+
 const StyledHome = styled.div`
   position: absolute;
   left: 40%;
@@ -76,6 +78,7 @@ const Home: NextPage = () => {
             <hr />
           </div>
         ))}
+      <Map latitude={37.724846} longitude={127.046895} />
     </StyledHome>
   );
 };
