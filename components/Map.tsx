@@ -27,39 +27,40 @@ function Map({ latitude, longitude }: MapProps) {
     document.head.appendChild(mapScript);
 
     const onLoadKakaoMap = () => {
-      window.kakao.maps.load(() => {
-        const container = document.getElementById("map");
-        const options = {
-          center: new window.kakao.maps.LatLng(latitude, longitude),
-        };
-        const map = new window.kakao.maps.Map(container, options);
+      // window.kakao.maps.load(() => {
+      //   const container = document.getElementById("map");
+      //   const options = {
+      //     center: new window.kakao.maps.LatLng(latitude, longitude),
+      //   };
+      //   const map = new window.kakao.maps.Map(container, options);
 
-        // 커스텀 마커 표시
-        const imageSrc =
-          "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png";
-        const imageSize = new window.kakao.maps.Size(64, 69);
-        const imageOption = { offset: new window.kakao.maps.Point(27, 69) };
+      //   // 커스텀 마커 표시
+      //   const imageSrc =
+      //     "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png";
+      //   const imageSize = new window.kakao.maps.Size(64, 69);
+      //   const imageOption = { offset: new window.kakao.maps.Point(27, 69) };
 
-        const markerImage = new window.kakao.maps.MarkerImage(
-          imageSrc,
-          imageSize,
-          imageOption
-        );
+      //   const markerImage = new window.kakao.maps.MarkerImage(
+      //     imageSrc,
+      //     imageSize,
+      //     imageOption
+      //   );
 
-        const markerPosition = new window.kakao.maps.LatLng(
-          latitude,
-          longitude
-        );
-        const marker = new window.kakao.maps.Marker({
-          position: markerPosition,
-          image: markerImage,
-        });
-        marker.setMap(map);
-        console.log("window.kakao.maps.load");
-      });
+      //   const markerPosition = new window.kakao.maps.LatLng(
+      //     latitude,
+      //     longitude
+      //   );
+      //   const marker = new window.kakao.maps.Marker({
+      //     position: markerPosition,
+      //     image: markerImage,
+      //   });
+      //   marker.setMap(map);
+      //   console.log("window.kakao.maps.load");
+      // });
       console.log("onLoadKakaoMap");
     };
 
+    // TODO: 배포 시 onLoadKakaoMap이 불려오지 않음
     mapScript.addEventListener("load", onLoadKakaoMap);
     console.log('mapScript.addEventListener("load", onLoadKakaoMap)');
 
