@@ -23,7 +23,6 @@ function Map({ latitude, longitude }: MapProps) {
 
     mapScript.async = true;
     mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&autoload=false`;
-    console.log(mapScript.src);
 
     document.head.appendChild(mapScript);
 
@@ -56,9 +55,13 @@ function Map({ latitude, longitude }: MapProps) {
           image: markerImage,
         });
         marker.setMap(map);
+        console.log("window.kakao.maps.load");
       });
+      console.log("onLoadKakaoMap");
     };
+
     mapScript.addEventListener("load", onLoadKakaoMap);
+    console.log('mapScript.addEventListener("load", onLoadKakaoMap)');
 
     return () => mapScript.removeEventListener("load", onLoadKakaoMap);
   }, [latitude, longitude]);
