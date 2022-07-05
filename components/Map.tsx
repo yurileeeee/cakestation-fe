@@ -1,0 +1,67 @@
+import styled from "styled-components";
+import { useEffect } from "react";
+
+const MapContainer = styled.div`
+  aspect-ratio: 320 / 220;
+`;
+
+interface MapProps {
+  latitude: number;
+  longitude: number;
+}
+
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
+
+function Map({ latitude, longitude }: MapProps) {
+  useEffect(() => {
+    const mapScript = document.createElement("script");
+
+    mapScript.async = true;
+    mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&autoload=false`;
+
+    document.head.appendChild(mapScript);
+
+    const onLoadKakaoMap = () => {
+      window.kakao.maps.load(() => {
+        const container = document.getElementById("map");
+        const options = {
+          center: new window.kakao.maps.LatLng(latitude, longitude),
+        };
+        const map = new window.kakao.maps.Map(container, options);
+
+        // 커스텀 마커 표시
+        const imageSrc =
+          "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png";
+        const imageSize = new window.kakao.maps.Size(64, 69);
+        const imageOption = { offset: new window.kakao.maps.Point(27, 69) };
+
+        const markerImage = new window.kakao.maps.MarkerImage(
+          imageSrc,
+          imageSize,
+          imageOption
+        );
+
+        const markerPosition = new window.kakao.maps.LatLng(
+          latitude,
+          longitude
+        );
+        const marker = new window.kakao.maps.Marker({
+          position: markerPosition,
+          image: markerImage,
+        });
+        marker.setMap(map);
+      });
+    };
+    mapScript.addEventListener("load", onLoadKakaoMap);
+
+    return () => mapScript.removeEventListener("load", onLoadKakaoMap);
+  }, [latitude, longitude]);
+
+  return <MapContainer id="map" />;
+}
+
+export default Map;
