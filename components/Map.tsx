@@ -23,6 +23,7 @@ function Map({ latitude, longitude }: MapProps) {
 
     mapScript.async = true;
     mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&autoload=false`;
+    console.log(mapScript.src);
 
     document.head.appendChild(mapScript);
 
